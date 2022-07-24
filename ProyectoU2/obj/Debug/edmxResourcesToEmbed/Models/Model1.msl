@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClinicaModelStoreContainer" CdmEntityContainer="ClinicaEntities">
+    <EntitySetMapping Name="citas">
+      <EntityTypeMapping TypeName="ClinicaModel.cita">
+        <MappingFragment StoreEntitySet="cita">
+          <ScalarProperty Name="idCita" ColumnName="idCita" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="direccions">
+      <EntityTypeMapping TypeName="ClinicaModel.direccion">
+        <MappingFragment StoreEntitySet="direccion">
+          <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+          <ScalarProperty Name="cedula_di" ColumnName="cedula_di" />
+          <ScalarProperty Name="nombre_di" ColumnName="nombre_di" />
+          <ScalarProperty Name="apellido_paterno_di" ColumnName="apellido_paterno_di" />
+          <ScalarProperty Name="apellido_materno_di" ColumnName="apellido_materno_di" />
+          <ScalarProperty Name="correo_di" ColumnName="correo_di" />
+          <ScalarProperty Name="roles" ColumnName="roles" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="ciudad_di" ColumnName="ciudad_di" />
+          <ScalarProperty Name="foto_di" ColumnName="foto_di" />
+          <ScalarProperty Name="usuario_di" ColumnName="usuario_di" />
+          <ScalarProperty Name="passwod_di" ColumnName="passwod_di" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="especialidads">
+      <EntityTypeMapping TypeName="ClinicaModel.especialidad">
+        <MappingFragment StoreEntitySet="especialidad">
+          <ScalarProperty Name="idEpecialidad" ColumnName="idEpecialidad" />
+          <ScalarProperty Name="nombre_es" ColumnName="nombre_es" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="horarios">
+      <EntityTypeMapping TypeName="ClinicaModel.horario">
+        <MappingFragment StoreEntitySet="horario">
+          <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+          <ScalarProperty Name="dias" ColumnName="dias" />
+          <ScalarProperty Name="hora_ingreso" ColumnName="hora_ingreso" />
+          <ScalarProperty Name="hora_salida" ColumnName="hora_salida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="medicos">
+      <EntityTypeMapping TypeName="ClinicaModel.medico">
+        <MappingFragment StoreEntitySet="medico">
+          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="cedula_me" ColumnName="cedula_me" />
+          <ScalarProperty Name="nombre_me" ColumnName="nombre_me" />
+          <ScalarProperty Name="apellido_paterno_me" ColumnName="apellido_paterno_me" />
+          <ScalarProperty Name="apellido_materno_me" ColumnName="apellido_materno_me" />
+          <ScalarProperty Name="correo_me" ColumnName="correo_me" />
+          <ScalarProperty Name="fNacimiento_me" ColumnName="fNacimiento_me" />
+          <ScalarProperty Name="edad_me" ColumnName="edad_me" />
+          <ScalarProperty Name="telefono_me" ColumnName="telefono_me" />
+          <ScalarProperty Name="ciudad_me" ColumnName="ciudad_me" />
+          <ScalarProperty Name="direccion_me" ColumnName="direccion_me" />
+          <ScalarProperty Name="foto_me" ColumnName="foto_me" />
+          <ScalarProperty Name="usuario_me" ColumnName="usuario_me" />
+          <ScalarProperty Name="passwod_me" ColumnName="passwod_me" />
+          <ScalarProperty Name="idEpecialidad" ColumnName="idEpecialidad" />
+          <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pacientes">
+      <EntityTypeMapping TypeName="ClinicaModel.paciente">
+        <MappingFragment StoreEntitySet="paciente">
+          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
+          <ScalarProperty Name="cedula_pte" ColumnName="cedula_pte" />
+          <ScalarProperty Name="nombre_pte" ColumnName="nombre_pte" />
+          <ScalarProperty Name="apellido_paterno_pte" ColumnName="apellido_paterno_pte" />
+          <ScalarProperty Name="apellido_materno_pte" ColumnName="apellido_materno_pte" />
+          <ScalarProperty Name="correo_pte" ColumnName="correo_pte" />
+          <ScalarProperty Name="fNacimiento_pte" ColumnName="fNacimiento_pte" />
+          <ScalarProperty Name="edad_pte" ColumnName="edad_pte" />
+          <ScalarProperty Name="telefono_pte" ColumnName="telefono_pte" />
+          <ScalarProperty Name="ciudad_pte" ColumnName="ciudad_pte" />
+          <ScalarProperty Name="direccion_pte" ColumnName="direccion_pte" />
+          <ScalarProperty Name="foto_pte" ColumnName="foto_pte" />
+          <ScalarProperty Name="usuario_pte" ColumnName="usuario_pte" />
+          <ScalarProperty Name="passwod_pte" ColumnName="passwod_pte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

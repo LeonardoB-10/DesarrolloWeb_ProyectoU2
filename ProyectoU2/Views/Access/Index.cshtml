@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<!-- <div class="row">
+    <form id="frm">
+        <div class="col-lg-6 col-lg-offset-3">
+            Usuario
+            <input type="text" name="user"/>
+            Password
+
+            <input  type="password" name="password"/>
+            <input type="submit" class="btn btn-success" value="Entrar"/>
+        </div>
+    </form>
+</div> -->
+<style>
+    .padre {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 390px;
+    }
+
+    .prueba {
+        width: 50%;
+        padding-top: 100px;
+    }
+
+    .grnade {
+        width: 100%;
+    }
+</style>
+
+<div class="padre">
+
+    <div class="prueba">
+        <h2>Inicio Sesion</h2>
+        <form id="frm">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                <input type="text" class="form-control" name="user" >
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" name="password" class="form-label">Contraseña</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Échame un vistazo</label>
+            </div>
+
+
+
+            <div class="col">
+                <!-- Simple link -->
+                <a href="#!">¿Olvidó su contraseña?</a>
+            </div>
+            <input type="submit" class="btn grnade btn-primary" value="Entrar" />
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+@section scripts
+{
+    <script>
+//para que funcione no en el Readybody sino en el RenderSection
+    $(document).ready(function () {//se ejecuta cuando el documento esta listo
+      $("#frm").submit(function (e) {//se ejecuta cuando se presiona el boton submit
+          e.preventDefault();//se evita que se recargue la pagina
+          url = "@Url.Content("~/Access/Enter")";
+          parametros = $(this).serialize();//se serializa el formulario
+          $.post(url, parametros, function (data) {//se ejecuta la funcion post
+              if (data == 1) {//si el valor de data es 1
+                  document.location.href = "@Url.Content("~/")";//se redirecciona a la pagina principal
+              } else {
+                  alert(data)
+              }
+          });
+      })
+    });
+    </script>
+
+}
