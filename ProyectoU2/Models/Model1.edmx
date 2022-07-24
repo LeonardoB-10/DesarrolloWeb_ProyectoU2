@@ -12,15 +12,14 @@
           <Property Name="idCita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="date" />
           <Property Name="hora" Type="time" Precision="7" />
-          <Property Name="idPaciente" Type="int" />
-          <Property Name="idMedico" Type="int" />
+          <Property Name="cedula_pte" Type="varchar" MaxLength="10" />
+          <Property Name="cedula_me" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="direccion">
           <Key>
-            <PropertyRef Name="idDireccion" />
+            <PropertyRef Name="cedula_di" />
           </Key>
-          <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cedula_di" Type="varchar" MaxLength="15" />
+          <Property Name="cedula_di" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="nombre_di" Type="varchar" MaxLength="50" />
           <Property Name="apellido_paterno_di" Type="varchar" MaxLength="50" />
           <Property Name="apellido_materno_di" Type="varchar" MaxLength="50" />
@@ -29,7 +28,6 @@
           <Property Name="telefono" Type="varchar" MaxLength="20" />
           <Property Name="ciudad_di" Type="varchar" MaxLength="50" />
           <Property Name="foto_di" Type="image" />
-          <Property Name="usuario_di" Type="varchar" MaxLength="50" />
           <Property Name="passwod_di" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="especialidad">
@@ -50,10 +48,9 @@
         </EntityType>
         <EntityType Name="medico">
           <Key>
-            <PropertyRef Name="idMedico" />
+            <PropertyRef Name="cedula_me" />
           </Key>
-          <Property Name="idMedico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cedula_me" Type="varchar" MaxLength="15" />
+          <Property Name="cedula_me" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="nombre_me" Type="varchar" MaxLength="50" />
           <Property Name="apellido_paterno_me" Type="varchar" MaxLength="50" />
           <Property Name="apellido_materno_me" Type="varchar" MaxLength="50" />
@@ -64,17 +61,15 @@
           <Property Name="ciudad_me" Type="varchar" MaxLength="50" />
           <Property Name="direccion_me" Type="varchar" MaxLength="100" />
           <Property Name="foto_me" Type="image" />
-          <Property Name="usuario_me" Type="varchar" MaxLength="50" />
           <Property Name="passwod_me" Type="varchar" MaxLength="50" />
           <Property Name="idEpecialidad" Type="int" />
           <Property Name="idHorario" Type="int" />
         </EntityType>
         <EntityType Name="paciente">
           <Key>
-            <PropertyRef Name="idPaciente" />
+            <PropertyRef Name="cedula_pte" />
           </Key>
-          <Property Name="idPaciente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cedula_pte" Type="varchar" MaxLength="15" />
+          <Property Name="cedula_pte" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="nombre_pte" Type="varchar" MaxLength="50" />
           <Property Name="apellido_paterno_pte" Type="varchar" MaxLength="50" />
           <Property Name="apellido_materno_pte" Type="varchar" MaxLength="50" />
@@ -85,30 +80,39 @@
           <Property Name="ciudad_pte" Type="varchar" MaxLength="50" />
           <Property Name="direccion_pte" Type="varchar" MaxLength="100" />
           <Property Name="foto_pte" Type="image" />
-          <Property Name="usuario_pte" Type="varchar" MaxLength="50" />
           <Property Name="passwod_pte" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__cita__idMedico__30F848ED">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__cita__cedula_me__30F848ED">
           <End Role="medico" Type="Self.medico" Multiplicity="0..1" />
           <End Role="cita" Type="Self.cita" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="medico">
-              <PropertyRef Name="idMedico" />
+              <PropertyRef Name="cedula_me" />
             </Principal>
             <Dependent Role="cita">
-              <PropertyRef Name="idMedico" />
+              <PropertyRef Name="cedula_me" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__cita__idPaciente__300424B4">
+        <Association Name="FK__cita__cedula_pte__300424B4">
           <End Role="paciente" Type="Self.paciente" Multiplicity="0..1" />
           <End Role="cita" Type="Self.cita" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="paciente">
-              <PropertyRef Name="idPaciente" />
+              <PropertyRef Name="cedula_pte" />
             </Principal>
             <Dependent Role="cita">
-              <PropertyRef Name="idPaciente" />
+              <PropertyRef Name="cedula_pte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -143,11 +147,12 @@
           <EntitySet Name="horario" EntityType="Self.horario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="medico" EntityType="Self.medico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="paciente" EntityType="Self.paciente" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__cita__idMedico__30F848ED" Association="Self.FK__cita__idMedico__30F848ED">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__cita__cedula_me__30F848ED" Association="Self.FK__cita__cedula_me__30F848ED">
             <End Role="medico" EntitySet="medico" />
             <End Role="cita" EntitySet="cita" />
           </AssociationSet>
-          <AssociationSet Name="FK__cita__idPaciente__300424B4" Association="Self.FK__cita__idPaciente__300424B4">
+          <AssociationSet Name="FK__cita__cedula_pte__300424B4" Association="Self.FK__cita__cedula_pte__300424B4">
             <End Role="paciente" EntitySet="paciente" />
             <End Role="cita" EntitySet="cita" />
           </AssociationSet>
@@ -172,17 +177,16 @@
           <Property Name="idCita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="hora" Type="Time" Precision="7" />
-          <Property Name="idPaciente" Type="Int32" />
-          <Property Name="idMedico" Type="Int32" />
-          <NavigationProperty Name="medico" Relationship="Self.FK__cita__idMedico__30F848ED" FromRole="cita" ToRole="medico" />
-          <NavigationProperty Name="paciente" Relationship="Self.FK__cita__idPaciente__300424B4" FromRole="cita" ToRole="paciente" />
+          <Property Name="cedula_pte" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_me" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="medico" Relationship="Self.FK__cita__cedula_me__30F848ED" FromRole="cita" ToRole="medico" />
+          <NavigationProperty Name="paciente" Relationship="Self.FK__cita__cedula_pte__300424B4" FromRole="cita" ToRole="paciente" />
         </EntityType>
         <EntityType Name="direccion">
           <Key>
-            <PropertyRef Name="idDireccion" />
+            <PropertyRef Name="cedula_di" />
           </Key>
-          <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cedula_di" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_di" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre_di" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido_paterno_di" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido_materno_di" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -191,7 +195,6 @@
           <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ciudad_di" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="foto_di" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="usuario_di" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passwod_di" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="especialidad">
@@ -200,7 +203,7 @@
           </Key>
           <Property Name="idEpecialidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_es" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="medicos" Relationship="Self.FK__medico__idEpecia__2C3393D0" FromRole="especialidad" ToRole="medico" />
+          <NavigationProperty Name="medico" Relationship="Self.FK__medico__idEpecia__2C3393D0" FromRole="especialidad" ToRole="medico" />
         </EntityType>
         <EntityType Name="horario">
           <Key>
@@ -210,14 +213,13 @@
           <Property Name="dias" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="hora_ingreso" Type="Time" Precision="7" />
           <Property Name="hora_salida" Type="Time" Precision="7" />
-          <NavigationProperty Name="medicos" Relationship="Self.FK__medico__idHorari__2D27B809" FromRole="horario" ToRole="medico" />
+          <NavigationProperty Name="medico" Relationship="Self.FK__medico__idHorari__2D27B809" FromRole="horario" ToRole="medico" />
         </EntityType>
         <EntityType Name="medico">
           <Key>
-            <PropertyRef Name="idMedico" />
+            <PropertyRef Name="cedula_me" />
           </Key>
-          <Property Name="idMedico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cedula_me" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_me" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre_me" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido_paterno_me" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido_materno_me" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -228,20 +230,18 @@
           <Property Name="ciudad_me" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="direccion_me" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="foto_me" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="usuario_me" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passwod_me" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idEpecialidad" Type="Int32" />
           <Property Name="idHorario" Type="Int32" />
-          <NavigationProperty Name="citas" Relationship="Self.FK__cita__idMedico__30F848ED" FromRole="medico" ToRole="cita" />
+          <NavigationProperty Name="cita" Relationship="Self.FK__cita__cedula_me__30F848ED" FromRole="medico" ToRole="cita" />
           <NavigationProperty Name="especialidad" Relationship="Self.FK__medico__idEpecia__2C3393D0" FromRole="medico" ToRole="especialidad" />
           <NavigationProperty Name="horario" Relationship="Self.FK__medico__idHorari__2D27B809" FromRole="medico" ToRole="horario" />
         </EntityType>
         <EntityType Name="paciente">
           <Key>
-            <PropertyRef Name="idPaciente" />
+            <PropertyRef Name="cedula_pte" />
           </Key>
-          <Property Name="idPaciente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cedula_pte" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_pte" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre_pte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido_paterno_pte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido_materno_pte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -252,31 +252,40 @@
           <Property Name="ciudad_pte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="direccion_pte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="foto_pte" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="usuario_pte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passwod_pte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="citas" Relationship="Self.FK__cita__idPaciente__300424B4" FromRole="paciente" ToRole="cita" />
+          <NavigationProperty Name="cita" Relationship="Self.FK__cita__cedula_pte__300424B4" FromRole="paciente" ToRole="cita" />
         </EntityType>
-        <Association Name="FK__cita__idMedico__30F848ED">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__cita__cedula_me__30F848ED">
           <End Role="medico" Type="Self.medico" Multiplicity="0..1" />
           <End Role="cita" Type="Self.cita" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="medico">
-              <PropertyRef Name="idMedico" />
+              <PropertyRef Name="cedula_me" />
             </Principal>
             <Dependent Role="cita">
-              <PropertyRef Name="idMedico" />
+              <PropertyRef Name="cedula_me" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__cita__idPaciente__300424B4">
+        <Association Name="FK__cita__cedula_pte__300424B4">
           <End Role="paciente" Type="Self.paciente" Multiplicity="0..1" />
           <End Role="cita" Type="Self.cita" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="paciente">
-              <PropertyRef Name="idPaciente" />
+              <PropertyRef Name="cedula_pte" />
             </Principal>
             <Dependent Role="cita">
-              <PropertyRef Name="idPaciente" />
+              <PropertyRef Name="cedula_pte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -305,27 +314,28 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ClinicaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="citas" EntityType="Self.cita" />
-          <EntitySet Name="direccions" EntityType="Self.direccion" />
-          <EntitySet Name="especialidads" EntityType="Self.especialidad" />
-          <EntitySet Name="horarios" EntityType="Self.horario" />
-          <EntitySet Name="medicos" EntityType="Self.medico" />
-          <EntitySet Name="pacientes" EntityType="Self.paciente" />
-          <AssociationSet Name="FK__cita__idMedico__30F848ED" Association="Self.FK__cita__idMedico__30F848ED">
-            <End Role="medico" EntitySet="medicos" />
-            <End Role="cita" EntitySet="citas" />
+          <EntitySet Name="cita" EntityType="Self.cita" />
+          <EntitySet Name="direccion" EntityType="Self.direccion" />
+          <EntitySet Name="especialidad" EntityType="Self.especialidad" />
+          <EntitySet Name="horario" EntityType="Self.horario" />
+          <EntitySet Name="medico" EntityType="Self.medico" />
+          <EntitySet Name="paciente" EntityType="Self.paciente" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__cita__cedula_me__30F848ED" Association="Self.FK__cita__cedula_me__30F848ED">
+            <End Role="medico" EntitySet="medico" />
+            <End Role="cita" EntitySet="cita" />
           </AssociationSet>
-          <AssociationSet Name="FK__cita__idPaciente__300424B4" Association="Self.FK__cita__idPaciente__300424B4">
-            <End Role="paciente" EntitySet="pacientes" />
-            <End Role="cita" EntitySet="citas" />
+          <AssociationSet Name="FK__cita__cedula_pte__300424B4" Association="Self.FK__cita__cedula_pte__300424B4">
+            <End Role="paciente" EntitySet="paciente" />
+            <End Role="cita" EntitySet="cita" />
           </AssociationSet>
           <AssociationSet Name="FK__medico__idEpecia__2C3393D0" Association="Self.FK__medico__idEpecia__2C3393D0">
-            <End Role="especialidad" EntitySet="especialidads" />
-            <End Role="medico" EntitySet="medicos" />
+            <End Role="especialidad" EntitySet="especialidad" />
+            <End Role="medico" EntitySet="medico" />
           </AssociationSet>
           <AssociationSet Name="FK__medico__idHorari__2D27B809" Association="Self.FK__medico__idHorari__2D27B809">
-            <End Role="horario" EntitySet="horarios" />
-            <End Role="medico" EntitySet="medicos" />
+            <End Role="horario" EntitySet="horario" />
+            <End Role="medico" EntitySet="medico" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -334,21 +344,20 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ClinicaModelStoreContainer" CdmEntityContainer="ClinicaEntities">
-          <EntitySetMapping Name="citas">
+          <EntitySetMapping Name="cita">
             <EntityTypeMapping TypeName="ClinicaModel.cita">
               <MappingFragment StoreEntitySet="cita">
                 <ScalarProperty Name="idCita" ColumnName="idCita" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
-                <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+                <ScalarProperty Name="cedula_pte" ColumnName="cedula_pte" />
+                <ScalarProperty Name="cedula_me" ColumnName="cedula_me" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="direccions">
+          <EntitySetMapping Name="direccion">
             <EntityTypeMapping TypeName="ClinicaModel.direccion">
               <MappingFragment StoreEntitySet="direccion">
-                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
                 <ScalarProperty Name="cedula_di" ColumnName="cedula_di" />
                 <ScalarProperty Name="nombre_di" ColumnName="nombre_di" />
                 <ScalarProperty Name="apellido_paterno_di" ColumnName="apellido_paterno_di" />
@@ -358,12 +367,11 @@
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="ciudad_di" ColumnName="ciudad_di" />
                 <ScalarProperty Name="foto_di" ColumnName="foto_di" />
-                <ScalarProperty Name="usuario_di" ColumnName="usuario_di" />
                 <ScalarProperty Name="passwod_di" ColumnName="passwod_di" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="especialidads">
+          <EntitySetMapping Name="especialidad">
             <EntityTypeMapping TypeName="ClinicaModel.especialidad">
               <MappingFragment StoreEntitySet="especialidad">
                 <ScalarProperty Name="idEpecialidad" ColumnName="idEpecialidad" />
@@ -371,7 +379,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="horarios">
+          <EntitySetMapping Name="horario">
             <EntityTypeMapping TypeName="ClinicaModel.horario">
               <MappingFragment StoreEntitySet="horario">
                 <ScalarProperty Name="idHorario" ColumnName="idHorario" />
@@ -381,10 +389,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="medicos">
+          <EntitySetMapping Name="medico">
             <EntityTypeMapping TypeName="ClinicaModel.medico">
               <MappingFragment StoreEntitySet="medico">
-                <ScalarProperty Name="idMedico" ColumnName="idMedico" />
                 <ScalarProperty Name="cedula_me" ColumnName="cedula_me" />
                 <ScalarProperty Name="nombre_me" ColumnName="nombre_me" />
                 <ScalarProperty Name="apellido_paterno_me" ColumnName="apellido_paterno_me" />
@@ -396,17 +403,15 @@
                 <ScalarProperty Name="ciudad_me" ColumnName="ciudad_me" />
                 <ScalarProperty Name="direccion_me" ColumnName="direccion_me" />
                 <ScalarProperty Name="foto_me" ColumnName="foto_me" />
-                <ScalarProperty Name="usuario_me" ColumnName="usuario_me" />
                 <ScalarProperty Name="passwod_me" ColumnName="passwod_me" />
                 <ScalarProperty Name="idEpecialidad" ColumnName="idEpecialidad" />
                 <ScalarProperty Name="idHorario" ColumnName="idHorario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="pacientes">
+          <EntitySetMapping Name="paciente">
             <EntityTypeMapping TypeName="ClinicaModel.paciente">
               <MappingFragment StoreEntitySet="paciente">
-                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
                 <ScalarProperty Name="cedula_pte" ColumnName="cedula_pte" />
                 <ScalarProperty Name="nombre_pte" ColumnName="nombre_pte" />
                 <ScalarProperty Name="apellido_paterno_pte" ColumnName="apellido_paterno_pte" />
@@ -418,8 +423,18 @@
                 <ScalarProperty Name="ciudad_pte" ColumnName="ciudad_pte" />
                 <ScalarProperty Name="direccion_pte" ColumnName="direccion_pte" />
                 <ScalarProperty Name="foto_pte" ColumnName="foto_pte" />
-                <ScalarProperty Name="usuario_pte" ColumnName="usuario_pte" />
                 <ScalarProperty Name="passwod_pte" ColumnName="passwod_pte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ClinicaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -437,7 +452,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

@@ -17,10 +17,9 @@ namespace ProyectoU2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public medico()
         {
-            this.citas = new HashSet<cita>();
+            this.cita = new HashSet<cita>();
         }
     
-        public int idMedico { get; set; }
         public string cedula_me { get; set; }
         public string nombre_me { get; set; }
         public string apellido_paterno_me { get; set; }
@@ -32,13 +31,12 @@ namespace ProyectoU2.Models
         public string ciudad_me { get; set; }
         public string direccion_me { get; set; }
         public byte[] foto_me { get; set; }
-        public string usuario_me { get; set; }
         public string passwod_me { get; set; }
         public Nullable<int> idEpecialidad { get; set; }
         public Nullable<int> idHorario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cita> citas { get; set; }
+        public virtual ICollection<cita> cita { get; set; }
         public virtual especialidad especialidad { get; set; }
         public virtual horario horario { get; set; }
     }

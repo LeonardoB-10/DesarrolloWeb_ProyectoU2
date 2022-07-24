@@ -17,7 +17,7 @@ namespace ProyectoU2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public horario()
         {
-            this.medicos = new HashSet<medico>();
+            this.medico = new HashSet<medico>();
         }
     
         public int idHorario { get; set; }
@@ -26,6 +26,6 @@ namespace ProyectoU2.Models
         public Nullable<System.TimeSpan> hora_salida { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<medico> medicos { get; set; }
+        public virtual ICollection<medico> medico { get; set; }
     }
 }

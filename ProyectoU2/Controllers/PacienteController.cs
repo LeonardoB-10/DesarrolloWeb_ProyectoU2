@@ -17,7 +17,7 @@ namespace ProyectoU2.Controllers
             List<ListaPaciente> listaPaciente;
             using (ClinicaEntities db = new ClinicaEntities())
             {
-                listaPaciente = (from d in db.pacientes
+                listaPaciente = (from d in db.paciente
                                  select new ListaPaciente
                                  {
                                      cedula_pte = d.cedula_pte,

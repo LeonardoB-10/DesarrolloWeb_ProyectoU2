@@ -12,15 +12,12 @@ namespace ProyectoU2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class cita
+    public partial class sysdiagrams
     {
-        public int idCita { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<System.TimeSpan> hora { get; set; }
-        public string cedula_pte { get; set; }
-        public string cedula_me { get; set; }
-    
-        public virtual medico medico { get; set; }
-        public virtual paciente paciente { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

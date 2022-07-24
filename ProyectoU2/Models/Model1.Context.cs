@@ -25,11 +25,12 @@ namespace ProyectoU2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<cita> citas { get; set; }
-        public virtual DbSet<direccion> direccions { get; set; }
-        public virtual DbSet<especialidad> especialidads { get; set; }
-        public virtual DbSet<horario> horarios { get; set; }
-        public virtual DbSet<medico> medicos { get; set; }
-        public virtual DbSet<paciente> pacientes { get; set; }
+        public virtual DbSet<cita> cita { get; set; }
+        public virtual DbSet<direccion> direccion { get; set; }
+        public virtual DbSet<especialidad> especialidad { get; set; }
+        public virtual DbSet<horario> horario { get; set; }
+        public virtual DbSet<medico> medico { get; set; }
+        public virtual DbSet<paciente> paciente { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

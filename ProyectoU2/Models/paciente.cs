@@ -17,10 +17,9 @@ namespace ProyectoU2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public paciente()
         {
-            this.citas = new HashSet<cita>();
+            this.cita = new HashSet<cita>();
         }
     
-        public int idPaciente { get; set; }
         public string cedula_pte { get; set; }
         public string nombre_pte { get; set; }
         public string apellido_paterno_pte { get; set; }
@@ -32,10 +31,9 @@ namespace ProyectoU2.Models
         public string ciudad_pte { get; set; }
         public string direccion_pte { get; set; }
         public byte[] foto_pte { get; set; }
-        public string usuario_pte { get; set; }
         public string passwod_pte { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cita> citas { get; set; }
+        public virtual ICollection<cita> cita { get; set; }
     }
 }

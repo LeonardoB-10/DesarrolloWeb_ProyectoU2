@@ -1,0 +1,36 @@
+﻿@model List<ProyectoU2.Models.TableViewModel.CitasTableViewModel>
+
+@{
+    ViewBag.Title = "Citas";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <tr>
+                <td>Nombre</td>
+                <td>Cedula</td>
+                <td>Edad</td>
+                <td>Correo</td>
+                <td>Telefono</td>
+                <td>Hora Cita</td>
+                <td>Fecha Cita</td>
+            </tr>
+            @foreach (var oCita in Model)
+            {
+                <tr>
+                    <td>@oCita.Nombre</td>
+                    <td>@oCita.Cedula</td>
+                    <td>@oCita.Edad</td>
+                    <td>@oCita.Correo</td>
+                    <td>@oCita.Telefono</td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</div>
+

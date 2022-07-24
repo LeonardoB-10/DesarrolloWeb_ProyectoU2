@@ -14,7 +14,6 @@ namespace ProyectoU2.Models
     
     public partial class direccion
     {
-        public int idDireccion { get; set; }
         public string cedula_di { get; set; }
         public string nombre_di { get; set; }
         public string apellido_paterno_di { get; set; }
@@ -24,7 +23,6 @@ namespace ProyectoU2.Models
         public string telefono { get; set; }
         public string ciudad_di { get; set; }
         public byte[] foto_di { get; set; }
-        public string usuario_di { get; set; }
         public string passwod_di { get; set; }
     }
 }

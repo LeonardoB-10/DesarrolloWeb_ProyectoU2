@@ -4,15 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8035ea84085f49cf91272c155b5efa7e" Name="Diagram1">
+      <Diagram DiagramId="f0bd7d1275974f949f0a2e08c89ceebc" Name="Diagram1">
         <EntityTypeShape EntityType="ClinicaModel.cita" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicaModel.direccion" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicaModel.direccion" Width="1.5" PointX="5.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicaModel.especialidad" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="ClinicaModel.horario" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicaModel.medico" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClinicaModel.paciente" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="ClinicaModel.FK__cita__idMedico__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="ClinicaModel.FK__cita__idPaciente__300424B4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ClinicaModel.medico" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicaModel.paciente" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="ClinicaModel.FK__cita__cedula_me__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicaModel.FK__cita__cedula_pte__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicaModel.FK__medico__idEpecia__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="ClinicaModel.FK__medico__idHorari__2D27B809" ManuallyRouted="false" />
       </Diagram>

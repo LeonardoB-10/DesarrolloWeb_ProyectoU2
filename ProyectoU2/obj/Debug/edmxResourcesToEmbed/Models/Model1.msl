@@ -1,21 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ClinicaModelStoreContainer" CdmEntityContainer="ClinicaEntities">
-    <EntitySetMapping Name="citas">
+    <EntitySetMapping Name="cita">
       <EntityTypeMapping TypeName="ClinicaModel.cita">
         <MappingFragment StoreEntitySet="cita">
           <ScalarProperty Name="idCita" ColumnName="idCita" />
           <ScalarProperty Name="fecha" ColumnName="fecha" />
           <ScalarProperty Name="hora" ColumnName="hora" />
-          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
-          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
+          <ScalarProperty Name="cedula_pte" ColumnName="cedula_pte" />
+          <ScalarProperty Name="cedula_me" ColumnName="cedula_me" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="direccions">
+    <EntitySetMapping Name="direccion">
       <EntityTypeMapping TypeName="ClinicaModel.direccion">
         <MappingFragment StoreEntitySet="direccion">
-          <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
           <ScalarProperty Name="cedula_di" ColumnName="cedula_di" />
           <ScalarProperty Name="nombre_di" ColumnName="nombre_di" />
           <ScalarProperty Name="apellido_paterno_di" ColumnName="apellido_paterno_di" />
@@ -25,12 +24,11 @@
           <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="ciudad_di" ColumnName="ciudad_di" />
           <ScalarProperty Name="foto_di" ColumnName="foto_di" />
-          <ScalarProperty Name="usuario_di" ColumnName="usuario_di" />
           <ScalarProperty Name="passwod_di" ColumnName="passwod_di" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="especialidads">
+    <EntitySetMapping Name="especialidad">
       <EntityTypeMapping TypeName="ClinicaModel.especialidad">
         <MappingFragment StoreEntitySet="especialidad">
           <ScalarProperty Name="idEpecialidad" ColumnName="idEpecialidad" />
@@ -38,7 +36,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="horarios">
+    <EntitySetMapping Name="horario">
       <EntityTypeMapping TypeName="ClinicaModel.horario">
         <MappingFragment StoreEntitySet="horario">
           <ScalarProperty Name="idHorario" ColumnName="idHorario" />
@@ -48,10 +46,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="medicos">
+    <EntitySetMapping Name="medico">
       <EntityTypeMapping TypeName="ClinicaModel.medico">
         <MappingFragment StoreEntitySet="medico">
-          <ScalarProperty Name="idMedico" ColumnName="idMedico" />
           <ScalarProperty Name="cedula_me" ColumnName="cedula_me" />
           <ScalarProperty Name="nombre_me" ColumnName="nombre_me" />
           <ScalarProperty Name="apellido_paterno_me" ColumnName="apellido_paterno_me" />
@@ -63,17 +60,15 @@
           <ScalarProperty Name="ciudad_me" ColumnName="ciudad_me" />
           <ScalarProperty Name="direccion_me" ColumnName="direccion_me" />
           <ScalarProperty Name="foto_me" ColumnName="foto_me" />
-          <ScalarProperty Name="usuario_me" ColumnName="usuario_me" />
           <ScalarProperty Name="passwod_me" ColumnName="passwod_me" />
           <ScalarProperty Name="idEpecialidad" ColumnName="idEpecialidad" />
           <ScalarProperty Name="idHorario" ColumnName="idHorario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="pacientes">
+    <EntitySetMapping Name="paciente">
       <EntityTypeMapping TypeName="ClinicaModel.paciente">
         <MappingFragment StoreEntitySet="paciente">
-          <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
           <ScalarProperty Name="cedula_pte" ColumnName="cedula_pte" />
           <ScalarProperty Name="nombre_pte" ColumnName="nombre_pte" />
           <ScalarProperty Name="apellido_paterno_pte" ColumnName="apellido_paterno_pte" />
@@ -85,8 +80,18 @@
           <ScalarProperty Name="ciudad_pte" ColumnName="ciudad_pte" />
           <ScalarProperty Name="direccion_pte" ColumnName="direccion_pte" />
           <ScalarProperty Name="foto_pte" ColumnName="foto_pte" />
-          <ScalarProperty Name="usuario_pte" ColumnName="usuario_pte" />
           <ScalarProperty Name="passwod_pte" ColumnName="passwod_pte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ClinicaModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
