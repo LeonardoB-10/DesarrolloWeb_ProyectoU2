@@ -12,7 +12,7 @@ namespace ProyectoU2.Models.TableViewModel
         public int Edad { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
-        public string HoraCita { get; set; }
-        public string FechaCita { get; set; }
+        public TimeSpan HoraCita { get; set; }
+        public DateTime FechaCita { get; set; }
     }
 }

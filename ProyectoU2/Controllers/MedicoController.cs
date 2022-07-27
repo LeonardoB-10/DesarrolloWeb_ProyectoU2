@@ -101,9 +101,91 @@ namespace ProyectoU2.Controllers
                                   Edad = (int)p.edad_pte,
                                   Correo = p.correo_pte,
                                   Telefono = p.telefono_pte,
+                                  HoraCita = (TimeSpan)c.hora,
+                                  FechaCita = (DateTime)c.fecha
                               }).ToList();
             }
             return View(listaCitas);
         }
+
+        public ActionResult Nuevo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Nuevo(MedicoViewModel medicoViewModel)
+        {
+            try
+            {
+                //Validar el modelo
+                if (ModelState.IsValid)
+                {
+                    HttpPostedFileBase fileBase = Request.Files[0];
+                    WebImage image = new WebImage(fileBase.InputStream);
+                    medicoViewModel.foto_me = image.GetBytes();
+                    //Coexión a la base de datos
+                    using (ClinicaEntities db = new ClinicaEntities())
+                    {
+                        var oMedico = new medico();
+                        oMedico.nombre_me = medicoViewModel.nombre_me;
+                        oMedico.cedula_me = medicoViewModel.cedula_me;
+                        oMedico.apellido_paterno_me = medicoViewModel.apellido_paterno_me;
+                        oMedico.apellido_materno_me = medicoViewModel.apellido_materno_me;
+                        oMedico.correo_me = medicoViewModel.correo_me;
+                        oMedico.fNacimiento_me = medicoViewModel.fNacimiento_me;
+                        oMedico.edad_me = medicoViewModel.edad_me;
+                        oMedico.telefono_me = medicoViewModel.telefono_me;
+                        oMedico.ciudad_me = medicoViewModel.ciudad_me;
+                        oMedico.direccion_me = medicoViewModel.direccion_me;
+                        oMedico.foto_me = medicoViewModel.foto_me;
+                        oMedico.passwod_me = medicoViewModel.passwod_me;
+                        oMedico.idEpecialidad = medicoViewModel.idEspecialidad;
+                        oMedico.idHorario = medicoViewModel.idHorario;
+                        //Almacenar en la base de datos
+                        db.medico.Add(oMedico);
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Medico");
+                }
+                return View(medicoViewModel);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public ActionResult Eliminar(string cedula_me)
+        {
+            using (ClinicaEntities db = new ClinicaEntities())
+            {
+                var oMedico = db.medico.Find(cedula_me);
+                db.medico.Remove(oMedico);
+                db.SaveChanges();
+            }
+            return Redirect("~/Medico");
+        }
+        /*
+        public ActionResult getImage(string cedula_me)
+        {
+            ClinicaEntities db = new ClinicaEntities();
+
+            medico model = db.medico.Find(cedula_me);
+
+            byte[] byteImage = model.foto_me;
+
+            MemoryStream memoryStream = new MemoryStream(byteImage);
+
+            Image image = Image.FromStream(memoryStream);
+
+            memoryStream = new MemoryStream();
+            image.Save(memoryStream, ImageFormat.Jpeg);
+            memoryStream.Position = 0;
+
+            return File(memoryStream, "image/jpg");
+        }
+        */
+        
     }
 }

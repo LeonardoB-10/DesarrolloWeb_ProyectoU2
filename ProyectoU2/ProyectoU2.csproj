@@ -272,6 +272,7 @@
     <Content Include="Views\Medico\Index.cshtml" />
     <Content Include="Views\Medico\Editar.cshtml" />
     <Content Include="Views\Medico\Citas.cshtml" />
+    <Content Include="Views\Medico\Nuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

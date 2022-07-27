@@ -1,0 +1,104 @@
+﻿@model ProyectoU2.Models.ViewModel.MedicoViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "medico", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.cedula_me)
+                @Html.TextBoxFor(d => d.cedula_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.cedula_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.nombre_me)
+                @Html.TextBoxFor(d => d.nombre_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.nombre_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.apellido_paterno_me)
+                @Html.TextBoxFor(d => d.apellido_paterno_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.apellido_paterno_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.apellido_materno_me)
+                @Html.TextBoxFor(d => d.apellido_materno_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.apellido_materno_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.correo_me)
+                @Html.TextBoxFor(d => d.correo_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.correo_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.fNacimiento_me) <br />
+                @Html.EditorFor(d => d.fNacimiento_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.fNacimiento_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.edad_me) <br />
+                @Html.EditorFor(d => d.edad_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.edad_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.telefono_me) <br />
+                @Html.EditorFor(d => d.telefono_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.telefono_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.ciudad_me) <br />
+                @Html.EditorFor(d => d.ciudad_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.ciudad_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.direccion_me) <br />
+                @Html.EditorFor(d => d.direccion_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.direccion_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.foto_me, htmlAttributes: new { @class = "control-label col-md-2" }) <br />
+                <input type="file" name="imageload" /> <br />
+                @Html.ValidationMessageFor(d => d.foto_me, "", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.passwod_me) <br />
+                @Html.EditorFor(d => d.passwod_me, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.passwod_me, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.idEspecialidad) <br />
+                @Html.EditorFor(d => d.idEspecialidad, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.idEspecialidad, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.idHorario) <br />
+                @Html.EditorFor(d => d.idHorario, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.idHorario, null, new { @class = "red" })
+            </div>
+
+            <br />
+            <br />
+            <div>
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+        </div>
+
+    </div>
+}
