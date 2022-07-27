@@ -12,6 +12,60 @@
     </div>
 </div>
 
+<div class="container text-center mt-3">
+    <h2 class="text-white rounded p-2" style="background-color: #1e2b38;"> Bienvenido <?php echo "$nombre $param_apellido_medico" ?></h2>
+</div>
+
+<!-- SECCION MÉDICO PRINCIPAL-->
+<div class="container mb-3">
+    <div class="w-100">
+        <div class="w-100">
+            <?php
+            if ($param_foto_medico != null) {
+            echo "<img class='d-block mx-auto my-3 rounded-circle' src='data:image/jpeg; base64," . base64_encode($param_foto_medico) . "' style='width:250px; height:250px'>";
+            } else {
+            echo "<div class='bg-white p-2 my-3 text-center'>
+                <h2>No hay foto</h2>
+                <p>Subir imagen. Máximo 100KB.</p>
+                <form enctype='multipart/form-data' action='upload.php' method='post'>
+                    <label>Upload the image file:</label><br />
+                    <input name='userImage' type='file' />
+                    <input type='submit' value='Upload' />
+                </form>
+            </div>";
+            }
+            ?>
+        </div>
+    </div>
+    <div class="d-flex w-100 justify-content-center bg-white rounded p-2">
+        <div class="text-center w-100" style="background-color: #1e2b38;">
+            <h5 class="text-white mt-2">
+                <i class="fa fa-user"></i>
+                <?php echo "$param_nombre_medico $param_apellido_medico" ?>
+            </h5>
+        </div>
+        <div class="text-center w-100" style="background-color: #1e2b38;">
+            <h5 class="text-white mt-2">
+                <i class="fa fa-briefcase-medical"></i>
+                <?php echo $param_nombre_especialidad ?>
+            </h5>
+        </div>
+        <div class="text-center w-100" style="background-color: #1e2b38;">
+            <h5 class="text-white mt-2">
+                <i class="fa fa-id-badge"></i>
+                <?php echo $param_cedula_medico ?>
+            </h5>
+        </div>
+        <div class="text-center w-100" style="background-color: #1e2b38;">
+            <h5 class="text-white mt-2">
+                <i class="fa fa-envelope"></i>
+                <?php echo $param_correo_medico ?>
+            </h5>
+        </div>
+    </div>
+</div>
+
+
 <div class="accordion" id="accordionExample">
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
@@ -40,7 +94,7 @@
                         <td>
                             <a class="btn btn-default" href="@Url.Action("Editar", "Cliente", new {id = @oElemento.idPaciente})">Editar</a>
                             <a class="btn btn-danger" href="@Url.Action("Eliminar", "Cliente", new {id = @oElemento.idPaciente})" onclick="alerta()">Eliminar</a>
-                        </td>   
+                        </td>
                     </tr>
                 }
             </table>
